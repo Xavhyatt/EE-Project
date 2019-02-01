@@ -15,6 +15,7 @@ import com.bae.persistence.domain.Trainees;
 import com.bae.util.JSONUtil;
 
 
+
 @Transactional(SUPPORTS)
 @Default
 public class TraineeDBRepository implements TraineeRepository{
@@ -37,15 +38,35 @@ public class TraineeDBRepository implements TraineeRepository{
 		em.persist(aTrainee);
 		return "{\"message\": \"Trainee created successfully\"}";
 	}
-
+	
+	@Transactional(REQUIRED)
 	public String deleteTrainee(int trainee_id) {
-		// TODO Auto-generated method stub
-		return null;
+		Trainees traineeInDB = findTrainee(trainee_id);
+		if (traineeInDB != null) {
+			em.remove(traineeInDB);
+			return "{\"message\": \"Trainee sucessfully deleted\"}";
+		}
+		else {
+			return "{\"message\": \"Trainee Not Found\"}";
+		}
 	}
+	
 
+	@Transactional(REQUIRED)
 	public String updateTrainee(int trainee_id, String trainee) {
-		// TODO Auto-generated method stub
-		return null;
+		Trainees aTrainee = findTrainee(trainee_id);
+		if(aTrainee != null) {
+			em.remove(aTrainee);
+			Trainees updatedTrainee = util.getObjectForJSON(trainee, Trainees.class);
+			em.persist(updatedTrainee);
+			return "{\"message\": \"Trainee Updated\"}";
+		}
+		
+		return "{\"message\": \"Update Failed\"}";
+	}
+	
+	private Trainees findTrainee(int trainee_id) {
+		return em.find(Trainees.class, trainee_id);
 	}
 
 }
