@@ -18,6 +18,12 @@ public class ClassroomServiceImpl implements ClassroomService {
 		
 		return repo.updateTrainer(classroom_id, trainerName);
 	}
+
+	@Override
+	public String createClassroom(String trainer) {
+		
+		return repo.createClassroom(trainer);
+	}
 	
 	
 

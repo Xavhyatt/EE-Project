@@ -31,15 +31,7 @@ public class ClassroomDBRepository implements ClassroomRepository {
 		return util.getJSONForObject(classrooms);
 	}
 
-//	public String addTrainee(int trainee_id) {
-//		//TODO
-//		return null;
-//	}
-//
-//	public String removeTrainee(int trainee_id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
 
 	public String updateTrainer(int classroom_id, String trainer) {
 		Classroom aClassroom = findClassroom(classroom_id);
@@ -54,6 +46,15 @@ public class ClassroomDBRepository implements ClassroomRepository {
 	
 	private Classroom findClassroom(int classroom_id) {
 		return em.find(Classroom.class, classroom_id);
+	}
+
+
+
+	@Override
+	public String createClassroom(String trainer) {
+		Classroom classroom = util.getObjectForJSON(trainer, Classroom.class);
+		em.persist(classroom);
+		return  "{\"message\": \"Classroom created successfully\"}";
 	}
 
 	
