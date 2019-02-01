@@ -24,7 +24,7 @@ public class TraineeEndpoint {
 		return service.getAllTrainees();
 	}
 	
-	@Path("/createTrainee/{classroom_id}")
+	@Path("/createTrainee")
 	@POST
 	@Produces({"application/json"})
 	public String createTrainee(String trainee) {
