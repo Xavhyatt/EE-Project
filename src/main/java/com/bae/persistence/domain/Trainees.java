@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name="Trainees")
 public class Trainees {
@@ -21,19 +24,18 @@ public class Trainees {
 	@Column(length = 100)
 	private String traineeName;
 	
-	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn(name = "classroom_id")
-	private Classroom classroom;
+	@Column(length = 10)
+	private int classroom_id;
 
 	public Trainees() {
 
 	}
 
 
-	public Trainees(int trainee_id, String traineeName, Classroom classroom) {
+	public Trainees(int trainee_id, String traineeName, int classroom_id) {
 		this.trainee_id = trainee_id;
 		this.traineeName = traineeName;
-		this.classroom = classroom;
+		this.classroom_id = classroom_id;
 	}
 
 
@@ -55,12 +57,12 @@ public class Trainees {
 		this.traineeName = traineeName;
 	}
 
-	public Classroom getClassroom() {
-		return classroom;
+	public int getClassroom_id() {
+		return classroom_id;
 	}
 
-	public void setClassroom(Classroom classroom) {
-		this.classroom = classroom;
+	public void setClassroom(int classroom_id) {
+		this.classroom_id = classroom_id;
 	}
 	
 	

@@ -1,6 +1,7 @@
 package com.bae.persistence.domain;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -23,14 +22,9 @@ public class Classroom {
 	@Column(length = 50)
 	private String trainer;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name = "Trainees",
-			joinColumns = @JoinColumn(name = "classroom_id"),
-			inverseJoinColumns =  @JoinColumn(name = "trainee_id")
-			)
-	private List<Trainees> trainees;
-	
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "classroom_id", cascade = CascadeType.ALL)
+	private Collection<Trainees> trainees = new LinkedHashSet<Trainees>();
 	
 
 	public Classroom() {

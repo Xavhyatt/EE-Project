@@ -69,4 +69,6 @@ public class TraineeDBRepository implements TraineeRepository{
 		return em.find(Trainees.class, trainee_id);
 	}
 
+
+
 }

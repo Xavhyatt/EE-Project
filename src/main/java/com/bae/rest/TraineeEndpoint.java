@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import com.bae.service.TraineeService;
@@ -23,24 +24,25 @@ public class TraineeEndpoint {
 		return service.getAllTrainees();
 	}
 	
-	@Path("/createTrainee")
+	@Path("/createTrainee/{classroom_id}")
 	@POST
 	@Produces({"application/json"})
 	public String createTrainee(String trainee) {
+		
 		return service.createTrainee(trainee);
 	}
 	
 	@Path("/deleteTrainee/{trainee_id}")
 	@DELETE
 	@Produces({"application/json"})
-	public String deleteTrainee(int trainee_id) {
+	public String deleteTrainee(@PathParam("trainee_id")int trainee_id) {
 		return service.deleteTrainee(trainee_id);
 	}
 		
 	@Path("/updateTrainee/{trainee_id}")
 	@PUT
 	@Produces({"application/json"})
-	public String updateTrainee(int trainee_id, String trainee) {
+	public String updateTrainee(@PathParam("trainee_id") int trainee_id, String trainee) {
 		return service.updateTrainee(trainee_id, trainee);
 	}
 

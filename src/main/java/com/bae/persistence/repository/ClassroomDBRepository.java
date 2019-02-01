@@ -1,6 +1,7 @@
 package com.bae.persistence.repository;
 
 import static javax.transaction.Transactional.TxType.SUPPORTS;
+import static javax.transaction.Transactional.TxType.REQUIRED;
 
 import java.util.Collection;
 
@@ -31,10 +32,12 @@ public class ClassroomDBRepository implements ClassroomRepository {
 	}
 
 
+	@Transactional(REQUIRED)
 	public String updateTrainer(int classroom_id, String trainer) {
 		Classroom aClassroom = findClassroom(classroom_id);
 		if(aClassroom != null) {
-			aClassroom.setTrainer(trainer);
+			String update = trainer.substring(12, trainer.length()-2);
+			aClassroom.setTrainer(update);
 			em.persist(aClassroom);
 			return "{\"message\": \"Trainer Updated\"}";
 		}
@@ -49,6 +52,7 @@ public class ClassroomDBRepository implements ClassroomRepository {
 
 
 	@Override
+	@Transactional(REQUIRED)
 	public String createClassroom(String trainer) {
 		Classroom classroom = util.getObjectForJSON(trainer, Classroom.class);
 		em.persist(classroom);
@@ -57,6 +61,7 @@ public class ClassroomDBRepository implements ClassroomRepository {
 
 
 	@Override
+	@Transactional(REQUIRED)
 	public String deleteClassroom(int classroom_id) {
 		Classroom aClassroom = findClassroom(classroom_id);
 		if(aClassroom != null) {

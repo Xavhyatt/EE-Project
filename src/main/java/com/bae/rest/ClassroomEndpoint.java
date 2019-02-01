@@ -1,6 +1,7 @@
 package com.bae.rest;
 
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -39,7 +40,7 @@ public class ClassroomEndpoint {
 	}
 	
 	@Path("/deleteClassroom/{classroom_id}")
-	@POST
+	@DELETE
 	@Produces({"application/json"})
 	public String deleteClassroom(@PathParam("classroom_id") int classroom_id) {
 		return service.deleteClassroom(classroom_id);
