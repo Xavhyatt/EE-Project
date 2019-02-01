@@ -55,5 +55,18 @@ public class ClassroomDBRepository implements ClassroomRepository {
 		return  "{\"message\": \"Classroom created successfully\"}";
 	}
 
+
+	@Override
+	public String deleteClassroom(int classroom_id) {
+		Classroom aClassroom = findClassroom(classroom_id);
+		if(aClassroom != null) {
+			
+			em.remove(aClassroom);
+			return "{\"message\": \"Classroom Deleted\"}";
+		}
+		
+		return "{\"message\": \"Deletion Failed\"}";
+	}
+
 	
 }

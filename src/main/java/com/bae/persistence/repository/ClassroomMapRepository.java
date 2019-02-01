@@ -42,4 +42,16 @@ public class ClassroomMapRepository implements ClassroomRepository {
 		return classroom.toString();
 	}
 
+	@Override
+	public String deleteClassroom(int classroom_id) {
+		if (classroomMap.containsKey(classroom_id)) {
+
+			classroomMap.remove(classroom_id);
+			;
+			return "Classroom Deleted";
+		}
+
+		return "Can't find that classroom";
+	}
+
 }
