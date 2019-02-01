@@ -31,7 +31,6 @@ public class Trainees {
 
 
 	public Trainees(int trainee_id, String traineeName, Classroom classroom) {
-		super();
 		this.trainee_id = trainee_id;
 		this.traineeName = traineeName;
 		this.classroom = classroom;

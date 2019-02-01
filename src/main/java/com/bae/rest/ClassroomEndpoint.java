@@ -21,7 +21,7 @@ public class ClassroomEndpoint {
 		return service.getAllInfo();
 	}
 	
-	@Path("/updateTrainer")
+	@Path("/updateTrainer/{classroom_id}")
 	@PUT
 	@Produces({"application/json"})
 	public String updateTrainer(int classroom_id, String trainerName) {

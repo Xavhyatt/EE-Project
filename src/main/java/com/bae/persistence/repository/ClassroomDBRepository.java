@@ -12,7 +12,6 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.bae.persistence.domain.Classroom;
-import com.bae.persistence.domain.Trainees;
 import com.bae.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -31,15 +30,6 @@ public class ClassroomDBRepository implements ClassroomRepository {
 		return util.getJSONForObject(classrooms);
 	}
 
-//	public String addTrainee(int trainee_id) {
-//		//TODO
-//		return null;
-//	}
-//
-//	public String removeTrainee(int trainee_id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 	public String updateTrainer(int classroom_id, String trainer) {
 		Classroom aClassroom = findClassroom(classroom_id);
