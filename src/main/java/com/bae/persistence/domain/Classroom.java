@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Classroom {
-		
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int classroom_id;
@@ -71,3 +71,4 @@ public class Classroom {
 	
 
 }
+

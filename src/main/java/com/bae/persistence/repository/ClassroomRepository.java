@@ -8,3 +8,4 @@ public interface ClassroomRepository {
 	String updateTrainer(int classroom_id, String trainer);
 
 }
+

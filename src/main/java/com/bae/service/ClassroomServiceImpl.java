@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import com.bae.persistence.repository.ClassroomRepository;
 
+
+
 public class ClassroomServiceImpl implements ClassroomService {
 	
 	@Inject
@@ -24,6 +26,14 @@ public class ClassroomServiceImpl implements ClassroomService {
 		
 		return repo.createClassroom(trainer);
 	}
+
+	@Override
+	public String deleteClassroom(int classroom_id) {
+	
+		return repo.deleteClassroom(classroom_id);
+	}
+	
+	
 	
 	
 
