@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.bae.persistence.domain.Classroom;
+import com.bae.persistence.domain.Trainees;
 import com.bae.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -30,20 +31,30 @@ public class ClassroomDBRepository implements ClassroomRepository {
 		return util.getJSONForObject(classrooms);
 	}
 
-	public String addTrainee(int trainee_id) {
-		//TODO
-		return null;
-	}
-
-	public String removeTrainee(int trainee_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	public String addTrainee(int trainee_id) {
+//		//TODO
+//		return null;
+//	}
+//
+//	public String removeTrainee(int trainee_id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	public String updateTrainer(int classroom_id, String trainer) {
-		// TODO Auto-generated method stub
-		return null;
+		Classroom aClassroom = findClassroom(classroom_id);
+		if(aClassroom != null) {
+			aClassroom.setTrainer(trainer);
+			em.persist(aClassroom);
+			return "{\"message\": \"Trainer Updated\"}";
+		}
+		
+		return "{\"message\": \"Update Failed\"}";
 	}
 	
+	private Classroom findClassroom(int classroom_id) {
+		return em.find(Classroom.class, classroom_id);
+	}
 
+	
 }
