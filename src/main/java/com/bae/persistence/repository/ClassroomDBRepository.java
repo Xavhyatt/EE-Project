@@ -46,5 +46,14 @@ public class ClassroomDBRepository implements ClassroomRepository {
 		return em.find(Classroom.class, classroom_id);
 	}
 
+
+
+	@Override
+	public String createClassroom(String trainer) {
+		Classroom classroom = util.getObjectForJSON(trainer, Classroom.class);
+		em.persist(classroom);
+		return  "{\"message\": \"Classroom created successfully\"}";
+	}
+
 	
 }
